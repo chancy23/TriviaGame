@@ -6,36 +6,36 @@ $(document).ready(function(){
             name: "Q1",
             question: "What is Cher's real birth name?",
             answers: ["Cherilyn Sarkisian", "Cher Saskatoon", "Cheryl Sanford", "Cheryl Ann Sarswesian"],
+            answerValues: [true, false, false, false],
             divClass: ".birthName"
-            //correctAnswer: answer[0]
         },
         {
             name: "Q2",
             question: "What award has Cher not won?",
             answers: ["A Grammy", "An Oscar", "An Emmy", "A Tony"],
+            answerValues: [false, false, false, true],
             divClass: ".awards"
-            //correctAnswer: answer[3]
         },
         {
             name: "Q3",
             question: "What 1998 hit pioneered the use of Auto-Tune?",
             answers: ["Strong Enough", "Believe", "The Power", "When the Money's Gone"],
+            answerValues: [false, true, false, false],
             divClass: ".autoTune"
-            //correctAnswer: answer[1]
         },
         {
             name: "Q4",
             question: "What movie was Cher's film debut in?",
             answers: ["Mask", "Moonstruck", "Silkwood", "Tea with Mussolini"],
+            answerValues: [false, false, true, false],
             divClass: ".filmDebut"
-            //correctAnswer: answers[2]
         },
         {
             name: "Q5",
             question: "What band is Cher covering on her upcoming album 'Dancing Queen'?",
             answers: ["Journey", "ABBA", "REO Speedwagon", "Fleetwood Mac"],
+            answerValues: [false, true, false, false],
             divClass: ".coverAlbum"
-            //correctAnswer: answers[2]
         }
     ];
 
@@ -85,19 +85,20 @@ function startGame() {
 };
 
 function loadQuestions() {
-    //$(".allQuestions :not('#sub-but')").empty();
+    $(".allQuestions").empty();
     // loops through the 5 questions 
     for (var i = 0; i < 5; i++) {
-        $(".allQuestions").append("<div class='" + questions[i].name + "'></div>");
-        console.log(questions[i].name);
-        console.log(questions[i].question);
-        $(questions[i].divClass).append("<div class ='questionTitle'>" + questions[i].question + "</div>");
-        //console.log("these are the questions: " + questions[i].questions);
-        // loops through answers for each radio button
-        for (var j = 0; j <= 4; j++) {
-            $(questions[i].divClass).append("<input type='radio' name='" + questions[i].name + "'value='" + questions[i].answers[j] + "'/><label for='" + labels[i] + "'>" + questions[i].answers[j] + "</label>");
+       var questionTitle = $("<div></div>").addClass(questions[i].divClass).text(questions[i].question);
+       $(".allQuestions").append(questionTitle);
+
+        for (var j = 0; j < 4; j++) {
+            var answer = $("<div></div>").addClass("allAnswers").text(questions[i].answers[j]);
+            $(answer).prepend($('<input type="radio" value="' + questions[i].answerValues[i] + "' 'name=" + questions[i].name + '">' + questions[i].answers[j]));
+            $(questionTitle).append(answer);
+            //radio buttons need a value (true if right answer or false if wrong), name (use name property from array), text (answers property)
+            //need to make only one radio button at a time, not multiple
+
         }
-        //$(".allQuestions").prepend("<hr />");
     }
 }
 loadQuestions();
@@ -136,7 +137,7 @@ loadQuestions();
     //this starts the countdown timer and displays the questions
     $("#start").on("click", function(){
         timer.start;
-        $(".allQuestions").show();
+        //$(".allQuestions").show();
     });
 
     // $("#q1a1").on("click", function() {
