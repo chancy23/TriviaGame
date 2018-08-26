@@ -6,40 +6,38 @@ $(document).ready(function(){
             name: "Q1",
             question: "What is Cher's real birth name?",
             answers: ["Cherilyn Sarkisian", "Cher Saskatoon", "Cheryl Sanford", "Cheryl Ann Sarswesian"],
-            answerValues: [true, false, false, false],
+            correctAnswer: "Cherilyn Sarkisian",
             divClass: ".birthName"
         },
         {
             name: "Q2",
             question: "What award has Cher not won?",
             answers: ["A Grammy", "An Oscar", "An Emmy", "A Tony"],
-            answerValues: [false, false, false, true],
+            correctAnswer: "A Tony",
             divClass: ".awards"
         },
         {
             name: "Q3",
             question: "What 1998 hit pioneered the use of Auto-Tune?",
             answers: ["Strong Enough", "Believe", "The Power", "When the Money's Gone"],
-            answerValues: [false, true, false, false],
+            correctAnswer: "Believe",
             divClass: ".autoTune"
         },
         {
             name: "Q4",
             question: "What movie was Cher's film debut in?",
             answers: ["Mask", "Moonstruck", "Silkwood", "Tea with Mussolini"],
-            answerValues: [false, false, true, false],
+            correctAnswer: "Silkwood",
             divClass: ".filmDebut"
         },
         {
             name: "Q5",
             question: "What band is Cher covering on her upcoming album 'Dancing Queen'?",
             answers: ["Journey", "ABBA", "REO Speedwagon", "Fleetwood Mac"],
-            answerValues: [false, true, false, false],
+            correctAnswer: "ABBA",
             divClass: ".coverAlbum"
         }
     ];
-
-    var labels = ["first", "second", "third", "forth"];
 
     //do a form timer include a countdown in the dom
     //timer variables and object
@@ -90,14 +88,12 @@ function loadQuestions() {
     for (var i = 0; i < 5; i++) {
        var questionTitle = $("<div></div>").addClass(questions[i].divClass).text(questions[i].question);
        $(".allQuestions").append(questionTitle);
-
+        //loops through each answer from object array and assigns a radio button and adds to each questions
         for (var j = 0; j < 4; j++) {
             var answer = $("<div></div>").addClass("allAnswers").text(questions[i].answers[j]);
-            $(answer).prepend($('<input type="radio" value="' + questions[i].answerValues[i] + "' 'name=" + questions[i].name + '">' + questions[i].answers[j]));
+            $(answer).prepend($('<input type="radio" value=" name="' + questions[i].name + '">' + questions[i].answers[j]));
             $(questionTitle).append(answer);
-            //radio buttons need a value (true if right answer or false if wrong), name (use name property from array), text (answers property)
-            //need to make only one radio button at a time, not multiple
-
+            //****Help!!***** need to make only one radio button at a time, not multiple
         }
     }
 }
