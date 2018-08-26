@@ -1,3 +1,10 @@
 .timer {
     border: 2px solid black;
 }
+
+.titles {
+    margin-bottom: 10px;
+}
+.answerButton {
+    margin-right: 4px
+}

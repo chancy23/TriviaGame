@@ -1,7 +1,7 @@
 $(document).ready(function(){
     //declare global variables
 
-    //object array of all questions and which id is the correct answer?
+    //object array of all questions, answers, and the correct answer to each question, also a class to assign  to each question and answer set
     var questions = [{
             name: "Q1",
             question: "What is Cher's real birth name?",
@@ -41,6 +41,7 @@ $(document).ready(function(){
 
     //do a form timer include a countdown in the dom
     //timer variables and object
+    
     var intervalId;
     var timerRunning = false;
     
@@ -59,86 +60,82 @@ $(document).ready(function(){
             // Decrement time by 1, remember we cant use "this" here.
             timer.time--;
             $("#timerDisplay").text(timer.time);
-                //when timer hits zero, stop countdown
-                if (timer.time <= 0) {
-                    clearInterval(intervalId);
-                    timerRunning = false;
-                    }
-        },
+                
+            //when timer hits zero, stop countdown
+            if (timer.time <= 0) {
+            clearInterval(intervalId);
+            timerRunning = false;
+            //display results div showing the varialbe for correct and wrong answers
+            $("#results").show();
+            }
+        }
     };
     
-    correctAnswerChosen = false;
-    correctAnswers = 0;
-    wrongAnswers = 0;
+    
+    var correctAnswerChosen = false;
+    var correctAnswers = 0;
+    var wrongAnswers = 0;
 
 
+    var questionTitle;
+    var answer;
+    //functions=======================
 
-//functions=======================
+    function loadQuestions() {
+        $(".allQuestions").empty();
+        // loops through the 5 questions and loads to div, assigns a class for each question.
+        for (var i = 0; i < 5; i++) {
+        questionTitle = $("<div>").addClass(questions[i].divClass).addClass("titles").text(questions[i].question);
+        $(".allQuestions").append(questionTitle);
 
-//a start function to clear all previous answer and start the countdown when start button is selected
-    //make it so that answers can't be selected until "start button" is pushed and timer begins
-function startGame() {
-    //$(".questions").hide();
-    console.log("this starts the game");
-};
-
-function loadQuestions() {
-    $(".allQuestions").empty();
-    // loops through the 5 questions 
-    for (var i = 0; i < 5; i++) {
-       var questionTitle = $("<div></div>").addClass(questions[i].divClass).text(questions[i].question);
-       $(".allQuestions").append(questionTitle);
-        //loops through each answer from object array and assigns a radio button and adds to each questions
-        for (var j = 0; j < 4; j++) {
-            var answer = $("<div></div>").addClass("allAnswers").text(questions[i].answers[j]);
-            $(answer).prepend($('<input type="radio" value=" name="' + questions[i].name + '">' + questions[i].answers[j]));
-            $(questionTitle).append(answer);
-            //****Help!!***** need to make only one radio button at a time, not multiple
+            //loops through each answer from object array and assigns a radio button and adds to each questions
+            for (var j = 0; j < 4; j++) {
+                answer = $("<div>").addClass("allAnswers").text(questions[i].answers[j]);
+                $(answer).prepend($('<input type="radio" class="answerButton" value="' + questions[i].answers[j] + '" name="' + questions[i].name +'">' + questions[i].answers[j]));
+                $(questionTitle).append(answer);
+                
+            }
         }
-    }
-}
-loadQuestions();
+   };
 
 
-
-// function checkAnswer(questions) {
-//     if ($("#q1a1").on("click", function(){
-
-//     }
-    //verify the correct answer selected
-    //move selected answer id into the answerchosen variable (empty array or variable)
-        //conditional if answerChosen ==== id of correct answer
-            //then add to correctly answered counter
-        //if else, left blank or !== to id of correct answer
-            //then move to wrongly answered counter
-
-
-//};
-
-    //do a time up function to stop the quiz and display the results
+    //verify the correct answer selected on button click 
+    function checkAnswer() {
+        //this console log displays, but then it stops
+        console.log("this is connected");
+        //this isn't pulling in the correct button class, it is showing nothing except an error message about "toLowerCase", which
+        //isn't used in this code anywhere??
+        if  ($(this).val() === questions.correctAnswer) {
+            console.log("this should be the correct answer");
+            correctAnswers++
+            $("#results").append("Correct Answers: " + correctAnswers);
+        }
+        else {
+        console.log("wrong answer");
+            wrongAnswers++
+            $("#results").append("Wrong Answers: " + wrongAnswers);
+        }
+    };
     
-
     
-
-
-    //total the number correct, incorrect
-        //display the .length of each array (correctly answered and incorrectly answered) in the results div at end of timer
-
-
-
-
-    //processes and main game play ========================================
-    startGame();
+    //processes and main game play =======================================
 
     //this starts the countdown timer and displays the questions
     $("#start").on("click", function(){
+        loadQuestions();
         timer.start;
-        //$(".allQuestions").show();
+        
     });
 
-    // $("#q1a1").on("click", function() {
-    //     correctAnswers
-    // }
+    //added submit button to be able to check right/wrong answer function.
+    $("#submit").on("click", function(){
+        //console.log("this is submit");
+        checkAnswer();
+        
+    });
+    
+    
+
     
       
             
