@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poiret+One|Poller+One');
 
 body {
-background-image: url(../assets/images/starsbackground.jpg);
+background-image: url(../images/starsbackground.jpg);
 background-color: rgb(85, 29, 68);
 font-family: 'Poiret One', cursive;
 }
