@@ -1,10 +1,43 @@
-.timer {
-    border: 2px solid black;
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Poller+One');
+
+body {
+background-image: url(../assets/images/starsbackground.jpg);
+background-color: rgb(85, 29, 68);
+font-family: 'Poiret One', cursive;
+}
+    
+.container {
+    background-color: rgb(203,174,96);
+    font-family: 'Poiret One', cursive;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Poller One', cursive;;
+}
+
+p {
+    background-color: rgb(252,253,181);
+    padding: 5px;
+    text-align: center;
+}
+
+button {
+    background-color: rgb(252,253,181);
+    margin-bottom: 10px;
+    
 }
 
 .titles {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
+
 .answerButton {
-    margin-right: 4px
+    margin-right: 5px;
+    margin-left: 15px;
 }
+/* wanted to make answers inline underneath question, ran out of time */
+/* .allAnswers {
+    display: inline;
+} */

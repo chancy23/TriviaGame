@@ -1,17 +1,11 @@
 # TriviaGame
 
-### Option One: Basic Quiz (Timed Form)
+Timed triva game. The goal is to correctly answer all of the questions before the timer runs out on the page.
 
-![Basic](Images/1-basic.jpg)
+Use of count down timer object and its methods (start, reset).
 
-**[Click Here to Watch the Demo](basic-trivia-demo.mov)**.
+Includes use of Bootstrap and jQuery CDNs.
 
-* You'll create a trivia form with multiple choice or true/false options (your choice).
+Background image from www.PNGtree.com.
 
-* The player will have a limited amount of time to finish the quiz. 
-
-  * The game ends when the time runs out. The page will reveal the number of questions that players answer correctly and incorrectly.
-
-* Don't let the player pick more than one answer per question.
-
-* Don't forget to include a countdown timer.
+Any questions or issues contact Chancy Leath at chancyleath@gmail.com
