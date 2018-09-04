@@ -17,6 +17,15 @@ h2 {
     font-family: 'Poller One', cursive;;
 }
 
+h5 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+input {
+    margin: 5px;
+}
+
 p {
     background-color: rgb(252,253,181);
     padding: 5px;
@@ -29,15 +38,8 @@ button {
     
 }
 
-.titles {
-    margin-bottom: 15px;
-}
 
 .answerButton {
     margin-right: 5px;
     margin-left: 15px;
 }
-/* wanted to make answers inline underneath question, ran out of time */
-/* .allAnswers {
-    display: inline;
-} */
